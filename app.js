@@ -1,16 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT;
 
-const MONGODB_URI =  "mongodb+srv://admin:iQgKf3gL4tT28Pwb@cluster0.owg0z.mongodb.net/todo?retryWrites=true&w=majority";
 
+app.use(cors());
 
 //Connect Database
 mongoose.connect(
-    MONGODB_URI
+   process.env.MONGODB_URI
 ).then(result => {
     console.log('CONNECTED');
 }
