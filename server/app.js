@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const todoRoutes = require('./api/todos');
+const userRoutes = require('./api/users');
 
 const app = express();
 const port = process.env.PORT;
@@ -36,6 +37,7 @@ app.get('/', (req, res) => {
 
 //setto la route per collegarmi alle mie crud
 app.use('/todos',todoRoutes);
+app.use('/users',userRoutes);
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)

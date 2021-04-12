@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-//@route GET /todos
+//@route POST /todos
 //@description add/save todo
 //@access Public
 router.post('/', (req, res) => {
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
     .catch(err => res.status(400).json({error: 'Unable to add this todo'}));
 });
 
-//@route GET /todos/:id
+//@route PUT /todos/:id
 //@description Update Todo
 //@access Public
 router.put('/:id', (req, res) => {
@@ -50,7 +50,7 @@ router.put('/:id', (req, res) => {
     .catch( err => res.status(400).json({ error: 'Unable to update this todo'}));
 });
 
-//@route GET /todos/:id
+//@route DELETE /todos/:id
 //@description Delete todo by id
 //@access Public
 router.delete('/:id', (req, res) => {
