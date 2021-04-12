@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 dotenv.config();
 
@@ -11,8 +13,14 @@ const userRoutes = require('./api/users');
 const app = express();
 const port = process.env.PORT;
 
-
+// enabling CORS for all requests
 app.use(cors());
+
+// adding Helmet to enhance your API's security
+app.use(helmet());
+
+// adding morgan to log HTTP requests
+app.use(morgan('combined'));
 
 //Connect Database
 mongoose.connect(
