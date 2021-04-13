@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const bcrypt = require('bcrypt');
 
 const User = require('../models/User');
 
@@ -8,13 +8,13 @@ const User = require('../models/User');
 //@route GET /users/test
 //@description tests users route
 //@access Public
-router.get('/test', (req, res) => res.send('user route testing!'));
+router.get('/test', async (req, res) => await res.send('user route testing!'));
 
 //@route GET /users
 //@description Get all user
 //@access Public
-router.get('/', (req, res) => {
-    User.find()
+router.get('/', async(req, res) => {
+    await User.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json({
         NoUserFound: 'No User found'
@@ -25,8 +25,8 @@ router.get('/', (req, res) => {
 //@route GET /users/:id
 //@description Get a single user by id
 //@access Public
-router.get('/:id', (req, res) => {
-    User.findById(req.params.id)
+router.get('/:id', async(req, res) => {
+    await User.findById(req.params.id)
     .then(user => res.json(user))
     .catch(err => res.status(400).json({
         NoUserFound: 'No User found'
@@ -37,8 +37,12 @@ router.get('/:id', (req, res) => {
 //@route POST /users
 //@description tests users route
 //@access Public
-router.post('/', (req, res) => {
-    User.create(req.body)
+router.post('/', async(req, res) => {
+    const hashPassword = bcrypt.hashSync(req.body.password, 10);
+    await User.create({
+        email: req.body.email,
+        password: hashPassword
+    })
     .then(user => res.json({msg: 'User added successfully'}))
     .catch(err => res.status(400).json({error: 'Unable to add this user'}));
 });
@@ -47,14 +51,14 @@ router.post('/', (req, res) => {
 //@route PUT /users/:id
 //@description Update User
 //@access Public
-router.put('/:id', (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body)
+router.put('/:id', async(req, res) => {
+    await User.findByIdAndUpdate(req.params.id, req.body)
     .then(user => res.json({msg: 'Updated successfully'}))
     .catch(err => res.status(400).json({error: 'Unable to update this user'}));
 });
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async(req, res) => {
     User.findByIdAndRemove(req.params.id, req.body)
     .then(user => res.json({msg: 'Deleted successfully'}))
     .catch(err => res.status(400).json({error: 'Unable to delete users'}));
