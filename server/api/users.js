@@ -41,7 +41,10 @@ router.post('/', async(req, res) => {
     const hashPassword = bcrypt.hashSync(req.body.password, 10);
     await User.create({
         email: req.body.email,
-        password: hashPassword
+        password: hashPassword,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        username: req.body.username
     })
     .then(user => res.json({msg: 'User added successfully'}))
     .catch(err => res.status(400).json({error: 'Unable to add this user'}));

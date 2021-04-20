@@ -1,14 +1,10 @@
+import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
+import Layout from './Component/Layout/Layout';
 
 function App() {
   return (
-    <div className="App">
-      <Button variant="secondary">
-        Todo App
-      </Button>
-    </div>
+      <Layout/>
   );
 }
 

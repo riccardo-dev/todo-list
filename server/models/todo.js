@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 //creo il model in cui aggiungo tutte le proprietà 
 //che deve avere la mia tabella
-const TodoSchema = Schema({
+const TodoSchema = new Schema({
     task: {
         type: String,
         required: true
