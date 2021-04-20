@@ -12,7 +12,7 @@ const userRoutes = require('./api/users');
 const loginRoutes = require('./api/login');
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 // enabling CORS for all requests
 app.use(cors());
