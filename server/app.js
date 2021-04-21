@@ -26,7 +26,7 @@ app.use(morgan('combined'));
 //Connect Database
 mongoose.connect(
    process.env.MONGODB_URI,
-   {useNewUrlParser: true, useUnifiedTopology: true  }
+   {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: false  }
 ).then(result => {
     console.log('CONNECTED');
 })

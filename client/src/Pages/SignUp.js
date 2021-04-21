@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useStyles from './styles/signup';
 import axios from 'axios';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
@@ -28,43 +28,22 @@ const SignUp = () => {
         email:'',
         password:''
     });
-    const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        async function fetchData(){
-            await axios.get('/users')
-            .then(res => {
-                setUsers(res.data);
-                console.log(res.data);
-            })
-            .catch(err => console.log(err));
-
-        }
-    }, [])
 
     const handleSubmit = async (e) => {
-        let hasSameMail = users.find(user => user.email === newUser.email);
-        let hasSameUsername = users.find(user => user.username === newUser.username);
-        if(!hasSameMail) {
-            if(!hasSameUsername){
-                return await axios.post('/users', newUser)
-                .then(res => {
-                   history.push('/login');
-                })
-                .catch(err => console.log(err));
-            } else {
-                alert('Username is already exists!');
-            }
-        } else {
-            alert('Email is already exists!');
-        }
+        history.push('/login');
+        await axios.post('/users', newUser)
+        .then(res => {
+            console.log(res.data);
+        })
+        .catch(err => console.log(err));
     }
 
 
 
 
     return (
-        <Container >
+        <Container maxWidth="sm">
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOpenOutlined/>

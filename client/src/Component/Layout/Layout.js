@@ -17,9 +17,9 @@ const Layout = (props) => {
             <Navbar/>
             <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} />
+                <Route  path="/profile" component={Profile} />
+                <Route  path="/login" component={Login} />
+                <Route  path="/signup" component={SignUp} />
             </Switch>
             <Footer/>
         </Container>

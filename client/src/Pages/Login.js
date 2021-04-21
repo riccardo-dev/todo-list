@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import useStyles from './styles/login';
 
 import Typography from '@material-ui/core/Typography';
@@ -30,18 +30,17 @@ const Login = () => {
     const history = useHistory();
 
     
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e){
         const data = {
             email: email,
             password: password
         }
+        history.push('/');
         await axios.post('/login', data)
         .then(res => {
             localStorage.setItem('token', res.data.token);
-            history.push('/');
         })
         .catch(err => console.log(err));
-        e.preventDefault();
     };
 
     const handleShowPassword = () => {
@@ -53,7 +52,7 @@ const Login = () => {
     };
 
     return (
-        <Container>
+        <Container maxWidth="sm">
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <LockOutlined/>
