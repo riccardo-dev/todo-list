@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => {
 //@access Public
 router.post('/', (req, res) => {
     Todo.create(req.body)
-    .then(todo => res.json({msg: 'Todo added successfully'}))
+    .then(todo => res.send(todo).json({msg: 'Todo added successfully'}))
     .catch(err => res.status(400).json({error: 'Unable to add this todo'}));
 });
 

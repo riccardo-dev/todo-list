@@ -23,7 +23,7 @@ export default makeStyles((theme) => ({
             backgroundColor: '#c15050'
         }
     },
-    singIn: {
+    profile: {
         alignContent: 'center'
     },
 }))

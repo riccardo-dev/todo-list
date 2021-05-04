@@ -7,8 +7,11 @@ export default makeStyles((theme) => ({
     },
     navImg: {
       width: '150px',
+      height: '30px',
       padding: 0,
-      margin: 0
+      margin: '1rem',
+      marginLeft: 0,
+      marginRight: '1.5rem'
     },
     icon: {
       color: 'white'
@@ -17,6 +20,13 @@ export default makeStyles((theme) => ({
       display: 'flex',
       justifyContent: 'space-between',
       padding: 0
+    },
+    rigthList: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    brandLogo: {
+      margin: '1rem 1rem 0 0'
     },
     linkText: {
       textDecoration: 'none',

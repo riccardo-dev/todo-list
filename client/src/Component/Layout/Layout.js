@@ -1,8 +1,7 @@
 import { Container } from '@material-ui/core';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
 import useStyle from './styles';
-import Navbar from '../Navbar/Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from '../../Pages/Home';
 import Profile from '../../Pages/Profile';
 import Login from '../../Pages/Login';
@@ -14,7 +13,6 @@ const Layout = (props) => {
     return (
         <Router>
         <Container className={classes.container} maxWidth="xl" >
-            <Navbar/>
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route  path="/profile" component={Profile} />

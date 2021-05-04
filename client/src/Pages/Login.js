@@ -15,12 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-/* 
-    {
-        "email": "r.andriadev@gmail.com",
-        "password": "Sviluppatore07"
-    }
-*/
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -31,14 +26,19 @@ const Login = () => {
 
     
     async function handleSubmit(e){
+        e.preventDefault();
         const data = {
             email: email,
             password: password
         }
-        history.push('/');
         await axios.post('/login', data)
         .then(res => {
-            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('token', JSON.stringify(res.data.token));
+            localStorage.setItem('userLogged', JSON.stringify(res.data.user[0]));
+            setTimeout(() => {
+                localStorage.clear();
+            }, 1000 * 60 * 60); // 1hour
+            history.replace('/');
         })
         .catch(err => console.log(err));
     };

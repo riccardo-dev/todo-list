@@ -18,7 +18,8 @@ router.post('/', async (req, res) => {
         //genero il token e lo invio una volta effettuato il login
         let token = jwt.sign({id: user._id}, process.env.TOKEN_SECRET, {expiresIn: 86400}); //24hours
         res.send({
-            token: token
+            token: token,
+            user: user
         })
 
     })

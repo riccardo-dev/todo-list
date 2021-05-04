@@ -34,6 +34,19 @@ router.get('/:id', async(req, res) => {
 });
 
 
+//@route GET /users/:username/todos
+//@description Get all todos of a single user
+//@access Public
+router.get('/:username/todos', async(req, res) => {
+    try {
+        let foundUser = await User.find({username: req.params.username}).populate('todo');
+        res.json(foundUser.map(user => user.todos));
+    } catch (error) {
+        console.log(error.message);        
+    }
+})
+
+
 //@route POST /users
 //@description tests users route
 //@access Public

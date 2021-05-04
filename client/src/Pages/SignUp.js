@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import LockOpenOutlined from '@material-ui/icons/LockOpenOutlined';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -31,15 +33,14 @@ const SignUp = () => {
 
 
     const handleSubmit = async (e) => {
-        history.push('/login');
+        e.preventDefault();
         await axios.post('/users', newUser)
         .then(res => {
             console.log(res.data);
+            history.push('/login');
         })
         .catch(err => console.log(err));
     }
-
-
 
 
     return (
@@ -117,6 +118,13 @@ const SignUp = () => {
                     >
                         Sign Up
                     </Button>
+                    <Grid className={classes.signIn} container>
+                        <Grid item>
+                            <Link href="/login" variant="body2">
+                                {"Do you have an account? Sign In"}
+                            </Link>
+                        </Grid>
+                    </Grid>
                 </form>
             </div>
         </Container>
