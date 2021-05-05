@@ -68,8 +68,27 @@ router.post('/', async(req, res) => {
 //@description Update User
 //@access Public
 router.put('/:id', async(req, res) => {
-    await User.findByIdAndUpdate(req.params.id, req.body)
+    const updatedUser = {
+        firstname: req?.body.firstname,
+        lastname: req?.body.lastname,
+        username: req?.body.username,
+        email: req?.body.email,
+    } 
+    await User.findByIdAndUpdate(req.params.id, updatedUser)
     .then(user => res.json({msg: 'Updated successfully'}))
+    .catch(err => res.status(400).json({error: 'Unable to update this user'}));
+});
+
+//@route PUT /users/:id
+//@description Update User Password
+//@access Public
+router.put('/change-password/:id', async(req, res) => {
+    const hashUpdatedPassword = bcrypt.hashSync(req.body.password, 10);
+    const updateUserPassword = {
+        password: hashUpdatedPassword
+    }
+    await User.findByIdAndUpdate(req.params.id, updateUserPassword)
+    .then(user => res.json({msg: 'Passwrod Updated successfully'}))
     .catch(err => res.status(400).json({error: 'Unable to update this user'}));
 });
 

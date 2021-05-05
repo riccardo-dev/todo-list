@@ -17,11 +17,17 @@ const currentUser = JSON.parse(localStorage.getItem('userLogged'));
 const Profile = () => {
     const classes = useStyles();
     const history = useHistory();
-    const [user, setUser] = useState('');
+    const [updatedUser, setUpdatedUser] = useState('');
+    const [currentUser, setCurrentUser] = useState('');
 
     useEffect(() => {
-        setUser(currentUser);
-    }, [user])
+        setCurrentUser(currentUser);
+    }, [currentUser])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(updatedUser)
+    }
 
     return (
         <>
@@ -34,17 +40,20 @@ const Profile = () => {
                     <Typography component="h1" variant="h5">
                        Profile
                     </Typography>
-                    <form noValidate /* onSubmit={handleSubmit} */ autoComplete="off" className={classes.form}>
+                    <form noValidate onSubmit={handleSubmit} autoComplete="off" className={classes.form}>
                         <TextField 
                             variant="filled" 
                             margin="normal" 
                             required 
                             fullWidth 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            autoComplete
                             label="First Name" 
                             id="firstName" 
                             name="firstName"
-                            value={user.firstname}
-                            onChange={e => setUser({ ...user, firstname: e.target.value })} 
+                            onChange={e => setUpdatedUser({updatedUser, firstname: e.target.value })} 
                             type="text" 
                         />
                         <TextField 
@@ -52,11 +61,13 @@ const Profile = () => {
                             margin="normal" 
                             required 
                             fullWidth 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                             label="Last Name" 
                             id="lastName"
                             name="lastName"
-                            value={user.lastname}
-                            onChange={e => setUser({ ...user, lastname: e.target.value })}
+                            onChange={e => setUpdatedUser({updatedUser, lastname: e.target.value })}
                             type="text" 
                         />
                         <TextField 
@@ -64,11 +75,13 @@ const Profile = () => {
                             margin="normal" 
                             required 
                             fullWidth 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                             label="Username" 
                             id="username"
                             name="username"
-                            value={user.username}
-                            onChange={e => setUser({ ...user, username:e.target.value })}
+                            onChange={e => setUpdatedUser({updatedUser, username:e.target.value })}
                             type="text"
                         />
                         <TextField 
@@ -76,32 +89,13 @@ const Profile = () => {
                             margin="normal" 
                             required 
                             fullWidth 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                             label="Email" 
                             id="email"
                             name="email"
-                            value={user.email}
-                            onChange={e => setUser({ ...user, email:e.target.value })}
-                            type="text"
-                        />
-                        <TextField 
-                            variant="filled" 
-                            margin="normal" 
-                            required 
-                            fullWidth 
-                            label="New Password" 
-                            id="newPassword"
-                            name="newPassword"
-                            type="text"
-                        />
-                        <TextField 
-                            variant="filled" 
-                            margin="normal" 
-                            required 
-                            fullWidth 
-                            label="Confrim Password" 
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            onChange={e => setUser({ ...user, password:e.target.value })}
+                            onChange={e => setUpdatedUser({updatedUser, email:e.target.value })}
                             type="text"
                         />
                         <Button 
