@@ -69,10 +69,8 @@ router.post('/', async(req, res) => {
 //@access Public
 router.put('/:id', async(req, res) => {
     const updatedUser = {
-        firstname: req?.body.firstname,
-        lastname: req?.body.lastname,
-        username: req?.body.username,
-        email: req?.body.email,
+        username: req.body.username,
+        email: req.body.email,
     } 
     await User.findByIdAndUpdate(req.params.id, updatedUser)
     .then(user => res.json({msg: 'Updated successfully'}))
