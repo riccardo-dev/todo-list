@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import useStyle from './styles';
-import {CheckBoxOutlineBlankOutlined, DeleteOutlineOutlined} from '@material-ui/icons';
-import {TextField } from '@material-ui/core';
+import {CheckBoxOutlineBlankOutlined, DeleteOutlineOutlined, CheckBoxOutlined} from '@material-ui/icons';
+import {IconButton, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 const initialStateUser = JSON.parse(localStorage.getItem('userLogged'));
@@ -12,7 +12,7 @@ export const TodoList = () => {
     const [user, setUser] = useState(initialStateUser);
     const [newTodo, setNewTodo] = useState('');
     const [userTodos, setUserTodos] = useState([]);
-
+    const [isCompleted, setIsCompleted] = useState(false);
 
     useEffect(() => {
         getUserTodos();
@@ -59,7 +59,19 @@ export const TodoList = () => {
         } catch (error) {
             console.log(error.message);
         }
-        
+    }
+
+    const setStateCompleted = async(todoId) => {
+        const selectedTodo = userTodos.find(item => item._id === todoId);
+        const updateeTodoState = {
+            completed: !selectedTodo.completed
+        }
+       await axios.put(`/todos/${todoId}`, updateeTodoState)
+        .then(res => {
+            console.log(res.data.todo);
+            getUserTodos();
+        })
+        .catch(err => console.log(err));
     }
 
     return (
@@ -82,7 +94,13 @@ export const TodoList = () => {
             <ul className={classes.listTodo}>    
                 {userTodos && userTodos.map(todo =>
                     <div className={classes.todoContainer} key={todo._id} >
-                        <CheckBoxOutlineBlankOutlined className={classes.checkBox}/>
+                        <IconButton className={classes.iconButon} onClick={() => setStateCompleted(todo._id)}>
+                            {
+                                !todo.completed ? 
+                                <CheckBoxOutlineBlankOutlined/> :
+                                <CheckBoxOutlined/>
+                            }
+                        </IconButton>
                         <div className={classes.todoItem}>
                             <li>
                                 <p>{todo.task}</p>

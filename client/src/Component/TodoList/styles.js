@@ -19,9 +19,9 @@ export default makeStyles((theme) => ({
     todoContainer: {
         display: 'flex',
         flexDirection:'row',
-        //justifyContent:'space-between'
+        alignItems: 'center'
     },
-    checkBox: {
+    iconButon: {
         padding: '1rem'
     },
     deleteIcon: {
