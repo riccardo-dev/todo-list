@@ -37,8 +37,8 @@ const Login = () => {
             localStorage.setItem('userLogged', JSON.stringify(res.data.user[0]));
             setTimeout(() => {
                 localStorage.clear();
-            }, 1000 * 60 * 60); // 1hour
-            history.replace('/');
+            }, 2700000); // 1hour
+            history.push('/');
         })
         .catch(err => console.log(err));
     };

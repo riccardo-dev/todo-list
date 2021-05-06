@@ -17,13 +17,17 @@ const Home = () => {
 
     useEffect(() => {
         getCurrentUser();
-    }, [token])
+    }, [])
     
     //get current user from localStorage
-    const getCurrentUser = () => {
+    const getCurrentUser = async () => {
         if(token){
             let currentUser = JSON.parse(localStorage.getItem('userLogged'));
-            setUser(currentUser);
+            await axios.get(`/users/${currentUser._id}`)
+            .then(res => {
+                setUser(res.data);
+            })
+            .catch(err => console.log(err));
         } else {
             history.replace('/login');
             localStorage.clear();
