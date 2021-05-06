@@ -12,7 +12,7 @@ import {HiOutlineHome, HiUserCircle, HiLogout} from 'react-icons/hi'
 
 const Navbar = () => {
     const classes = useStyle();
-    const history = useHistory()
+    const history = useHistory();
 
     const handleLogOut = () => {
         history.push('/login');
@@ -28,12 +28,16 @@ const Navbar = () => {
                         component="nav"
                         aria-label="main-navigation"
                         className={classes.rigthList}>
-                        <IconButton edge="start" className={classes.menuButton} href="/" color="inherit" aria-label="home">
-                            <HiOutlineHome/>
-                        </IconButton>
+                        {window.location.pathname === '/' ? 
                         <IconButton edge="start" className={classes.menuButton} href="/profile" color="inherit" aria-label="home">
                             <HiUserCircle/>
+                        </IconButton>  
+                        : 
+                        <IconButton edge="start" className={classes.menuButton} href="/" color="inherit" aria-label="home">
+                            <HiOutlineHome/> 
                         </IconButton>
+                        
+                        }
                         <h2 className={classes.brandLogo}>ToDo</h2>  
                     </List>
                     <IconButton edge="end" onClick={handleLogOut} color="inherit" aria-label="logout">
