@@ -18,6 +18,7 @@ const Layout = (props) => {
                 <Route  path="/profile" component={Profile} />
                 <Route  path="/login" component={Login} />
                 <Route  path="/signup" component={SignUp} />
+                <Route component={NotFound}/>
             </Switch>
             <Footer/>
         </Container>

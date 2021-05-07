@@ -11,7 +11,7 @@ import { TodoList } from '../Component/TodoList/TodoList';
 
 const Home = () => {
     const [user, setUser] = useState('');
-    const [token, setToken] = useState(localStorage.getItem('token'));
+    const [token, setToken] = useState(sessionStorage.getItem('token'));
     const history = useHistory();
     const classes = useStyles();
 
@@ -22,7 +22,7 @@ const Home = () => {
     //get current user from localStorage
     const getCurrentUser = async () => {
         if(token){
-            let currentUser = JSON.parse(localStorage.getItem('userLogged'));
+            let currentUser = JSON.parse(sessionStorage.getItem('userLogged'));
             await axios.get(`/users/${currentUser._id}`)
             .then(res => {
                 setUser(res.data);

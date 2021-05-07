@@ -16,7 +16,7 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         history.push('/login');
-        localStorage.clear();
+        sessionStorage.clear();
     }
 
     return (

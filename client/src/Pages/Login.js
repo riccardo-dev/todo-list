@@ -33,10 +33,10 @@ const Login = () => {
         }
         await axios.post('/login', data)
         .then(res => {
-            localStorage.setItem('token', JSON.stringify(res.data.token));
-            localStorage.setItem('userLogged', JSON.stringify(res.data.user[0]));
+            sessionStorage.setItem('token', JSON.stringify(res.data.token));
+            sessionStorage.setItem('userLogged', JSON.stringify(res.data.user[0]));
             setTimeout(() => {
-                localStorage.clear();
+                sessionStorage.clear();
             }, 2700000); // 1hour
             history.push('/');
         })
