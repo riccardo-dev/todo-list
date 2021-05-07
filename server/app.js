@@ -4,6 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require('path'); 
+
 
 dotenv.config();
 
@@ -43,6 +45,15 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World')
 });
+
+/* 
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('../client/build'));
+} */
+/*
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'))
+}); */
 
 //setto la route per collegarmi alle mie crud
 app.use('/todos', todoRoutes);

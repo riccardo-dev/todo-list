@@ -4,8 +4,12 @@
   "description": "Todo List",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "start-server": "node app.js",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "client": "cd client && npm start",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
