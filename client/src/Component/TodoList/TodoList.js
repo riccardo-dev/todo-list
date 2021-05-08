@@ -7,10 +7,7 @@ import Button from '@material-ui/core/Button';
 
 const initialStateUser = JSON.parse(sessionStorage.getItem('userLogged'));
 
-/* 
-    Provare a sostituire l'icon button
-    con input(checkbox) per checked prop 
-*/
+
 
 export const TodoList = () => {
     const classes = useStyle();
@@ -69,14 +66,17 @@ export const TodoList = () => {
     //fare il find(userTodos) per aggiornare
     //real time lo stato del todo checkato
     const setStateCompleted = async(todoId) => {
-        const selectedTodo = userTodos.find(item => item._id === todoId);
+        const newListTodo = [...userTodos];
+        const selectedTodo = newListTodo.find(item => item._id === todoId);
         const updateeTodoState = {
             completed: !selectedTodo.completed
         }
-       await axios.put(`/todos/${todoId}`, updateeTodoState)
+        
+        selectedTodo.completed = updateeTodoState.completed;
+        setUserTodos(newListTodo);
+        await axios.put(`/todos/${todoId}`, updateeTodoState)
         .then(res => {
             console.log(res.data.todo);
-            getUserTodos();
         })
         .catch(err => console.log(err));
     }
