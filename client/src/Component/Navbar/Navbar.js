@@ -38,8 +38,8 @@ const Navbar = () => {
                         </IconButton>
                         
                         }
-                        <h2 className={classes.brandLogo}>ToDo</h2>  
                     </List>
+                        <h2 className={classes.brandLogo}>ToDo</h2>  
                     <IconButton edge="end" onClick={handleLogOut} color="inherit" aria-label="logout">
                         <HiLogout/>
                     </IconButton>

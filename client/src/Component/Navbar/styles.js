@@ -26,7 +26,9 @@ export default makeStyles((theme) => ({
       justifyContent: 'space-between'
     },
     brandLogo: {
-      margin: '1rem 1rem 0 0'
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center'
     },
     linkText: {
       textDecoration: 'none',
@@ -37,7 +39,7 @@ export default makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
-    menuButton: {
-      marginRight: theme.spacing(2),
+    menuButton:{
+      margin: 0
     },
 }));
