@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 
 
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(__dirname, 'client', 'build'));
+    app.use(express.static('client/build'));
 }
 
 //setto la route per collegarmi alle mie crud
