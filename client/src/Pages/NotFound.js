@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useStyles from './styles/notFound';
 
-export const NotFound = () => {
+const NotFound = () => {
+  const classes = useStyles();
     return (
-        <>
-          <h1>404 - Not Found. Back to <Link to='/login'>Login</Link></h1>  
-        </>
+          <div className={classes.notFound}>
+            <span className={classes.text}>
+              <b>404</b> - Not Found. Back to <Link to='/login' className={classes.a}>Login</Link></span>  
+          </div>
     )
 }
+
+export default NotFound;

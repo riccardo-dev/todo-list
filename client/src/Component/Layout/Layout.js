@@ -7,6 +7,7 @@ import Profile from '../../Pages/Profile';
 import Login from '../../Pages/Login';
 import SignUp from '../../Pages/SignUp';
 import Footer from '../Footer/Footer';
+import NotFound from '../../Pages/NotFound';
 
 const Layout = (props) => {
     const classes = useStyle();
