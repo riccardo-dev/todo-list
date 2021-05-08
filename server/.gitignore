@@ -3,4 +3,5 @@
 /node_modules
 
 #environment file
-/.env
+.env
+
