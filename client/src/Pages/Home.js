@@ -10,10 +10,10 @@ import { TodoList } from '../Component/TodoList/TodoList';
 
 
 const Home = () => {
-    const [user, setUser] = useState('');
-    const [token, setToken] = useState(sessionStorage.getItem('token'));
     const history = useHistory();
     const classes = useStyles();
+    const [user, setUser] = useState('');
+    const [token, setToken] = useState(sessionStorage.getItem('token'));
 
     useEffect(() => {
         getCurrentUser();
@@ -33,6 +33,7 @@ const Home = () => {
             localStorage.clear();
         }
     }
+
     
     return (
         <>

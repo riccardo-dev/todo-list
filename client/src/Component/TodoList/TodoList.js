@@ -7,21 +7,18 @@ import Button from '@material-ui/core/Button';
 
 const initialStateUser = JSON.parse(sessionStorage.getItem('userLogged'));
 
-
-
 export const TodoList = () => {
     const classes = useStyle();
     const [user, setUser] = useState(initialStateUser);
     const [newTodo, setNewTodo] = useState('');
     const [userTodos, setUserTodos] = useState([]);
-    const [isCompleted, setIsCompleted] = useState(false);
 
     useEffect(() => {
         getUserTodos();
-    },[])
+    }, [user])
 
-    //method to get all todos
-    const getUserTodos = async() => {
+      //method to get all todos
+      const getUserTodos = async() => {
         try {
             const response = await axios.get('/todos')
             let listAllTodos = response.data;
@@ -30,16 +27,6 @@ export const TodoList = () => {
         } catch (error) {
             console.log(`Error: ${error.message}`);
         }
-    }
-
-    const deleteTodo = async(todoId) => {
-        try {
-            const response = await axios.delete(`/todos/${todoId}`);
-        } catch (error) {
-            console.log(`Error: ${error.message}`); 
-        }
-        let newTodoList = userTodos.filter(item => item._id !== todoId);
-        setUserTodos(newTodoList);
     }
 
      //method to create a new todo of the current user
@@ -63,15 +50,25 @@ export const TodoList = () => {
         }
     }
 
-    //fare il find(userTodos) per aggiornare
-    //real time lo stato del todo checkato
+    // method to delete todo
+    const deleteTodo = async(todoId) => {
+        try {
+            await axios.delete(`/todos/${todoId}`);
+        } catch (error) {
+            console.log(`Error: ${error.message}`); 
+        }
+        let newTodoList = userTodos.filter(item => item._id !== todoId);
+        setUserTodos(newTodoList);
+    }
+
+
+    //method to set the State of todo
     const setStateCompleted = async(todoId) => {
         const newListTodo = [...userTodos];
         const selectedTodo = newListTodo.find(item => item._id === todoId);
         const updateeTodoState = {
             completed: !selectedTodo.completed
-        }
-        
+        };
         selectedTodo.completed = updateeTodoState.completed;
         setUserTodos(newListTodo);
         await axios.put(`/todos/${todoId}`, updateeTodoState)
