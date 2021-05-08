@@ -46,20 +46,20 @@ app.get('/', (req, res) => {
     res.send('Hello World')
 });
 
-/* 
+
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('../client/build'));
-} */
-/*
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'))
-}); */
+    app.use(express.static('client', 'build'));
+}
 
 //setto la route per collegarmi alle mie crud
 app.use('/todos', todoRoutes);
 app.use('/users', userRoutes);
 app.use('/login', loginRoutes);
 
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+});
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
