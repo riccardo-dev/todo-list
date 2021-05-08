@@ -42,9 +42,6 @@ mongoose.set('useFindAndModify', false);
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello World')
-});
 
 
 if(process.env.NODE_ENV === 'production') {
