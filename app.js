@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const path = require('path'); 
+const path = require('path');
 
 
 dotenv.config();
@@ -48,10 +48,10 @@ app.use('/users', userRoutes);
 app.use('/login', loginRoutes);
 
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+    app.use(express.static('./client/build'));
     
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+        res.sendFile(path.join(__dirname, './client', 'build', 'index.html'))
     });
 } else {
     app.get('/', (req, res) => {
