@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-axios.defaults.baseURL = 'https://plan-day.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
 
 
