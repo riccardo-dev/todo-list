@@ -38,12 +38,8 @@ mongoose.connect(
 mongoose.set('useFindAndModify', false);
 
 
-
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-
-
-
 
 
 //setto la route per collegarmi alle mie crud
