@@ -1,0 +1,17 @@
+@import '../../style/colors';
+
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-top: 3rem;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    &:hover {
+        color:$primary;
+    }
+}

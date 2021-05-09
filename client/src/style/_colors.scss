@@ -1,0 +1,40 @@
+$primary: #d97642;
+$secondary: #ffefcf;
+$success: #cbf37e;
+$warning: #fcc438;
+$danger: #f8523c;
+$light: #f0f0f0;
+
+$theme-colors: (
+	'primary': $primary,
+	'secondary': $secondary,
+	'success': $success,
+	'warning': $warning,
+	'danger': $danger,
+	'light': $light,
+);
+
+$body-bg: $secondary;
+$text-color: white;
+
+/* 
+
+$primary: #355fa8;
+$secondary: #fcc438;
+$success: #cbf37e;
+$warning: #fcc438;
+$danger: #f8523c;
+$light: #f0f0f0;
+
+$theme-colors: (
+	'primary': $primary,
+	'secondary': $secondary,
+	'success': $success,
+	'warning': $warning,
+	'danger': $danger,
+	'light': $light,
+);
+
+$body-bg: $light;
+$link-color: $primary;
+*/

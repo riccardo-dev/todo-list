@@ -1,15 +1,22 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom';
-import useStyles from './styles/notFound';
+import style from '../style/notFound.module.scss';
 
 const NotFound = () => {
-  const classes = useStyles();
-    return (
-          <div className={classes.notFound}>
-            <span className={classes.text}>
-              <b>404</b> - Not Found. Back to <Link to='/login' className={classes.a}>Login</Link></span>  
-          </div>
-    )
+
+  const handleBackToLogin = () => {
+    sessionStorage.clear();
+  }
+  
+  return (
+      <>
+        <div className={style.notFound}>
+          <span className={style.text}>
+            <b>404</b> - Not Found. Back to <Link to='/login' onClick={handleBackToLogin} className={style.link}>Login</Link>  
+          </span>
+        </div>
+      </>
+  )
 }
 
 export default NotFound;

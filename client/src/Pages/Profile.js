@@ -1,87 +1,81 @@
-import React, { useContext, useEffect, useState } from 'react';
-import useStyles from './styles/profile';
+import React, { useState } from 'react';
+import { useHistory} from 'react-router-dom';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-
-import Avatar from '@material-ui/core/Avatar';
 import Navbar from '../Component/Navbar/Navbar';
-import Container from '@material-ui/core/Container';
-import {HiOutlineUser} from 'react-icons/hi';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+//style
+import style from '../style/profile.module.scss';
+//icons
+import { AiOutlineUser } from 'react-icons/ai';
+
 
 const initialState = JSON.parse(sessionStorage.getItem('userLogged'));
 
 const Profile = () => {
-    const classes = useStyles();
-    const history = useHistory();
-    const [updatedUser, setUpdatedUser] = useState('');
-    const [currentUser, setCurrentUser] = useState(initialState);
+  const history = useHistory();
+  const [updatedUser, setUpdatedUser] = useState('');
+  const [currentUser, setCurrentUser] = useState(initialState);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        await axios.put(`/users/${currentUser._id}`, updatedUser)
-        .then(res => {
-            history.push('/');
-        })
-        .catch(err => console.log(err));
-    }
-
-    return (
-        <>
-            <Navbar/>
-            <Container maxWidth="sm">
-                <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <HiOutlineUser/>
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                       Profile
-                    </Typography>
-                    <form noValidate onSubmit={handleSubmit} className={classes.form}>
-                        <TextField 
-                            variant="filled" 
-                            margin="normal" 
-                            required 
-                            fullWidth 
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            label="Username" 
-                            id="username"
-                            name="username"
-                            onChange={e => setUpdatedUser({...updatedUser, username:e.target.value })}
-                            type="text"
-                        />
-                        <TextField 
-                            variant="filled" 
-                            margin="normal" 
-                            required 
-                            fullWidth 
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            label="Email" 
-                            id="email"
-                            name="email"
-                            onChange={e => setUpdatedUser({...updatedUser, email:e.target.value })}
-                            type="text"
-                        />
-                        <Button 
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            Update User
-                        </Button>
-                    </form>
-                </div>
-            </Container>
-        </>
-    );
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.put(`/users/${currentUser._id}`, updatedUser)
+    .then(res => {
+        history.push('/');
+    })
+    .catch(err => console.log(err));
 }
- 
+
+  return (
+    <>
+    
+      <Navbar/>
+      <div className="container-sm">
+        <div className={style.main}>
+          <div className={style.avatar}>
+            <AiOutlineUser/>
+          </div>
+          <h4>Profile</h4> 
+          <form onSubmit={handleSubmit} className={style.form}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Username</label>
+              <input 
+                type="text"
+                className="form-control bg-secondary"
+                id="username" 
+                aria-describedby="username"
+                required
+                autoComplete="username"
+                onChange={e => setUpdatedUser({...updatedUser, username:e.target.value })}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input 
+                type="email"
+                className="form-control bg-secondary"
+                id="email" 
+                aria-describedby="email"
+                required
+                autoComplete="email"
+                onChange={e => setUpdatedUser({...updatedUser, username:e.target.value })}
+              />
+            </div>
+            <div className={style.signupFooter}>
+              <button 
+                className={`btn btn-primary mt-3 ${style.button}`}
+                type="submit"
+              >
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  )
+}
+
+
 export default Profile;
+
+

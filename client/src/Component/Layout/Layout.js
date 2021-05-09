@@ -1,30 +1,32 @@
-import { Container } from '@material-ui/core';
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import React from 'react';
-import useStyle from './styles';
+
+//pages
 import Home from '../../Pages/Home';
 import Profile from '../../Pages/Profile';
 import Login from '../../Pages/Login';
 import SignUp from '../../Pages/SignUp';
-import Footer from '../Footer/Footer';
 import NotFound from '../../Pages/NotFound';
 
-const Layout = (props) => {
-    const classes = useStyle();
+//footer component
+import Footer from '../Footer/Footer';
+
+
+const Layout = () => {
     return (
         <Router>
-        <Container className={classes.container} maxWidth="xl" >
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route  path="/profile" component={Profile} />
-                <Route  path="/login" component={Login} />
-                <Route  path="/signup" component={SignUp} />
-                <Route component={NotFound}/>
-            </Switch>
-            <Footer/>
-        </Container>
+            <div className="container-l">
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/profile" component={Profile} />
+                    <Route path="/login" component={Login}/>
+                    <Route path="/signup" component={SignUp}/>
+                    <Route component={NotFound}/>
+                </Switch>
+                <Footer/>
+            </div>
         </Router>
-    );
+    )
 }
- 
-export default Layout;
+
+export default Layout

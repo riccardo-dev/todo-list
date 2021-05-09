@@ -1,19 +1,19 @@
-import { Link, Typography } from '@material-ui/core';
-import React from 'react';
-import useStyles from './styles';
+import React from 'react'
+import style from './footer.module.scss';
 
 const Footer = () => {
-    const classes = useStyles();
     return (
-        <Typography className={classes.root} variant="body2" color="textSecondary" align="center">
-            {'Copyright ©'} {' '}
-            <Link color="inherit" href="https://riccardo-dev.github.io/portfolio/">
-                Riccardo Andria
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
+        <footer className={style.footer}>
+            <div>
+                {'Copyright ©'} {' '}
+                <a className={style.link} href="https://riccardo-dev.github.io/portfolio/">
+                    Riccardo Andria
+                </a>{' '}
+                {new Date().getFullYear()}
+                {'.'}
+            </div>
+        </footer>
+    )
 }
- 
+
 export default Footer;

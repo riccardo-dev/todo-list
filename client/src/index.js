@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './style/global.scss';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://plan-day.herokuapp.com/'
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+
+
+axios.defaults.baseURL = 'http://localhost:8080/';
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem('token');
 
 
 ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
+    <App />,
   document.getElementById('root')
 );
+

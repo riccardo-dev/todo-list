@@ -1,0 +1,22 @@
+@import '../style/colors';
+
+.notFound{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15rem 0;
+    padding: 1rem;
+}
+
+.text{
+    font-size: 3rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    &:hover{
+        color: $primary;
+    }
+}

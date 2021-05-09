@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
 import Layout from './Component/Layout/Layout';
+//import style from './style/App.module.scss';
 
 function App() {
   return (
-      <Layout/>
+    <Layout/>
   );
 }
 

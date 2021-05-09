@@ -1,0 +1,40 @@
+@import '../../style/colors';
+
+.btnAdd{
+    color: white;
+}
+
+.todoContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.listTodo{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+}
+
+.todoItem{
+    list-style-type: none;
+    width: 100%;
+    padding: 0 1rem;
+    margin: 1rem 0;
+}
+
+
+.listItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 0;
+}
+
+
+.iconBtn{
+    cursor: pointer;
+}

@@ -1,0 +1,17 @@
+@import '../../style/colors.scss';
+
+.navbar{
+    background-color: $primary;
+    color: $text-color;
+}
+
+.navLink{
+    text-decoration: none;
+    color: $text-color;
+    font-size: 1.5rem;
+    margin: 1rem;
+    &:hover{
+        color: black;
+
+    }
+}

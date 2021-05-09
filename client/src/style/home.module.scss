@@ -1,0 +1,25 @@
+@import '../style/colors';
+
+
+.welcome{
+    padding: 1rem;
+    color: $primary;
+}
+
+.todo{
+    display: flex;
+    flex-direction: column;
+    min-width: 50%;
+    max-width: 50%;
+    margin: 4rem auto;
+    border: 1px solid black;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    box-shadow: 5px 5px 5px $primary;
+}
+
+@media screen and (max-width: 560px) {
+    .todo{
+        max-width: 80%;
+    }
+}

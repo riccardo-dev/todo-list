@@ -1,53 +1,33 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, Link } from 'react-router-dom';
+import style from './navbar.module.scss';
 
-import useStyle from './styles';
-import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import Toolbar from '@material-ui/core/Toolbar';
-import Container from '@material-ui/core/Container';
-import List from '@material-ui/core/List';
-import {HiOutlineHome, HiUserCircle, HiLogout} from 'react-icons/hi'
-
+import {HiOutlineHome, HiUserCircle} from 'react-icons/hi'
+import {BiLogInCircle} from 'react-icons/bi';
 
 const Navbar = () => {
-    const classes = useStyle();
-    const history = useHistory();
 
-    const handleLogOut = () => {
-        history.push('/login');
-        sessionStorage.clear();
-    }
+  //clear the storage when user log out
+  const handleLogOut = () => {
+    sessionStorage.clear();
+  }
 
     return (
-        <div className={classes.root}>
-            <AppBar position="static" className={classes.appBar}>
-                <Toolbar>
-                    <Container maxWidth="xl" className={classes.container}>
-                    <List
-                        component="nav"
-                        aria-label="main-navigation"
-                        className={classes.rigthList}>
-                        {window.location.pathname === '/' ? 
-                        <IconButton edge="start" className={classes.menuButton} href="/profile" color="inherit" aria-label="home">
-                            <HiUserCircle/>
-                        </IconButton>  
-                        : 
-                        <IconButton edge="start" className={classes.menuButton} href="/" color="inherit" aria-label="home">
-                            <HiOutlineHome/> 
-                        </IconButton>
-                        
-                        }
-                    </List>
-                        <h2 className={classes.brandLogo}>ToDo</h2>  
-                    <IconButton edge="end" onClick={handleLogOut} color="inherit" aria-label="logout">
-                        <HiLogout/>
-                    </IconButton>
-                    </Container>
-                </Toolbar>
-            </AppBar>
-        </div>
-    );
+        <nav className={`navbar ${style.navbar}`}>
+          <div>
+            {window.location.pathname === '/' ? 
+              <Link to="/profile" className={style.navLink}><HiUserCircle/></Link>
+              :
+              <Link to="/" className={style.navLink}><HiOutlineHome/></Link>
+            }
+          </div>
+          <div>
+            <span>ToDo</span>
+          </div>
+          <div><Link to="/login" onClick={handleLogOut} className={style.navLink}><BiLogInCircle/></Link>
+          </div>
+        </nav>
+    )
 }
- 
+
 export default Navbar;
