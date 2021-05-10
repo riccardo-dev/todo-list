@@ -14,7 +14,7 @@ const Home = () => {
     
   useEffect(() => {
       getCurrentUser();
-  }, [token])
+  }, [])
 
   //get current user from localStorage
   const getCurrentUser = async () => {
@@ -23,7 +23,6 @@ const Home = () => {
           await axios.get(`/users/${currentUser._id}`)
           .then(res => {
               setUser(res.data);
-              window.location.reload();
           })
           .catch(err => console.log(err));
       } else {
