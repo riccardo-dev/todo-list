@@ -14,7 +14,7 @@ const Home = () => {
     
   useEffect(() => {
       getCurrentUser();
-  }, [])
+  }, [token])
 
   //get current user from localStorage
   const getCurrentUser = async () => {
